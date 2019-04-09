@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-
+import React from 'react';
+import PropTypes from 'prop-types';
 import Tabs from './Tabs';
 import Cards from './Cards';
 
 // Importing our tab and card data. No need to change anything here.
 import { tabData, cardData } from '../../data';
 
-export default class Content extends Component {
+export default class Content extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -43,13 +43,13 @@ export default class Content extends Component {
           of the items from cardData. 
         - else, it should only return those cards whose 'tab' matched this.state.selected.
     */
-   if(this.state.selected == 'all'){
+   if(this.state.selected === 'all'){
      return this.state.cards
    }else{
      return(this.state.cards.filter(card =>
-       card.tab == this.state.selected
+       card.tab === this.state.selected
      ))
-   };  };
+   }  };
 
   render() {
     return (
@@ -66,4 +66,8 @@ export default class Content extends Component {
       </div>
     );
   }
+}
+Content.propTypes = {
+  changeSelected: PropTypes.func,
+  filterCards: PropTypes.func
 }
